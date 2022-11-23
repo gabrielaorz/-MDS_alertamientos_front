@@ -5,8 +5,10 @@ export class Alert {
   justificacion: string | undefined;
   motivo: string | undefined;
   dispositivo: string | undefined;
-  estatus: string | undefined;
+  estatus: number | undefined;
   host: string | undefined;
   sensor: string | undefined;
-  vigencia: string | undefined;
+  vigencia : string | undefined;
+  vigenciaInicio : string | undefined;
+  checkboxVigencia : boolean | false;
 }

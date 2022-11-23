@@ -67,14 +67,46 @@
             </div>
 
             <div class="col-12">
-              <label for="firstName" class="form-label">Fecha de activacion de Alerta</label>
-              <input [(ngModel)]="alert.vigencia" #vigencia="ngModel" id="vigencia" name="vigencia" type="text" class="form-control" placeholder="Fecha de activacion de Alerta" value="" required>
-              <div class="alert alert-danger" *ngIf="vigencia.invalid && (vigencia.dirty || vigencia.touched)">
-                 <div *ngIf="vigencia.errors?.required">La fecha de activacion es requerida.</div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" (click)="activaVigenciaInicio()">
+                  <label class="form-check-label" for="flexCheckDefault">
+                    Alertamiento programado
+                  </label>
+            </div>
+            </div>
+
+            <div class="col-12" *ngIf="checkVigenciaInicio">
+              <label  class="form-label">Fecha inicio de activacion de Alerta</label>
+              <app-date-time-picker [(ngModel)]="alert.vigenciaInicio"
+                    #vigenciaInicio="ngModel"
+                    id="vigenciaInicio"
+                    name="vigenciaInicio"
+                    [ngClass]="vigenciaInicio.invalid && (vigenciaInicio.dirty || vigenciaInicio.touched) ? 'is-invalid' : ''"
+                    placeholder="Fecha inicio de activacion de Alerta"
+                    required="true"></app-date-time-picker>
+              <div class="alert alert-danger" *ngIf="vigenciaInicio.invalid && (vigenciaInicio.dirty || vigenciaInicio.touched)">
+                 <div *ngIf="vigenciaInicio.errors?.required">La fecha de activacion es requerida.</div>
               </div>
             </div>
+
+
+          <div class="col-12">
+            <label for="firstName" class="form-label">Fecha de activacion de Alerta</label>
+            <app-date-time-picker [(ngModel)]="alert.vigencia"
+                  #vigencia="ngModel"
+                  id="vigencia"
+                  name="vigencia"
+                  [ngClass]="vigencia.invalid && (vigencia.dirty || vigencia.touched) ? 'is-invalid' : ''"
+                  placeholder="Fecha de activacion de Alerta"
+                  required="true"></app-date-time-picker>
+            <div class="alert alert-danger" *ngIf="vigencia.invalid && (vigencia.dirty || vigencia.touched)">
+               <div *ngIf="vigencia.errors?.required">La fecha de activacion es requerida.</div>
+            </div>
           </div>
-          <hr class="my-4">
+
+        </div>
+        <hr class="my-4">
 
           <button class="w-100 btn btn-lg btn-primary" (click)="save()" type="button" [disabled]="!alertForm.form.valid || saving">Guardar</button>
           <div [ngClass]="error ? 'alert alert-danger': 'alert alert-success'" *ngIf="message">{{message}}</div>

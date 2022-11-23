@@ -19,6 +19,7 @@ export class DashboardAlertComponent implements OnInit {
   public message:string;
   public error:boolean=false;
   public saving:boolean=false;
+  public checkVigenciaInicio:boolean=false;
 
   constructor(private alertService:AlertService, protected router: Router) { }
 
@@ -27,14 +28,14 @@ export class DashboardAlertComponent implements OnInit {
   public save():void {
     this.saving = true;
     if (!this.alert.estatus) {
-      this.alert.estatus = "1";
+      this.alert.estatus = 1;
     }
     this.alertService.insert(this.alert)
     .pipe(
       catchError((e:any) => {
         this.saving = false;
         this.error = true;
-        this.message = "Se dio de alta correctamente la alerta";
+        this.message = "Ocurrió un error al dar de alta la alerta";
         return throwError(e);
       })
     )
@@ -47,4 +48,12 @@ export class DashboardAlertComponent implements OnInit {
           }, 2000);
       });
   }
+
+  /**
+   * activaVigenciaInicio
+   */
+  public activaVigenciaInicio() {
+    this.checkVigenciaInicio=!this.checkVigenciaInicio;
+  }
+
 }

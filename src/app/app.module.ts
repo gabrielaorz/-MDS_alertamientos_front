@@ -15,7 +15,7 @@ import { DashboardSidebarComponent } from './dashboard-sidebar/dashboard-sidebar
 import { NKDatetimeModule } from 'ng2-datetime/ng2-datetime';
 import * as $ from 'jquery';
 import { ModalConfirmationComponent, SwitchConfirmationComponent } from './modal-confirmation/modal-confirmation.component';
-
+import { DateTimePickerComponent } from "./date-time-picker/date-time-picker.component";
 
 
 const routes: Routes = [
@@ -34,7 +34,8 @@ const routes: Routes = [
     DashboardComponent,
     DashboardSidebarComponent,
     ModalConfirmationComponent,
-    SwitchConfirmationComponent
+    SwitchConfirmationComponent,
+    DateTimePickerComponent
   ],
   imports: [
     FormsModule,

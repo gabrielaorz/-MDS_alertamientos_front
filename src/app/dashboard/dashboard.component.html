@@ -17,33 +17,35 @@
         </div>
       </div>
 
-      <h2>Alertamientos apagados</h2>
+      <h3>Reglas activas e inactivas</h3>
       <div class="table-responsive">
         <table class="table table-striped table-sm">
           <thead>
             <tr>
               <th scope="col">Id</th>
-              <th scope="col">Host</th>
-              <th scope="col">Sensor</th>
-              <th scope="col">Dispositivo</th>
-              <th scope="col">Vigencia</th>
+              <th scope="col">Descripcion</th>
+              <th scope="col">Vigencia inicio</th>
+              <th scope="col">Vigencia fin</th>
               <th scope="col">Empleado</th>
               <th scope="col">Area</th>
-              <th scope="col">Justificacion</th>
-              <th scope="col">Activar</th>
+              <th scope="col">Modificar estatus</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let alert of alerts">
               <td>{{alert.id}}</td>
-              <td>{{alert.host}}</td>
-              <td>{{alert.sensor}}</td>
-              <td>{{alert.dispositivo}}</td>
+              <td>
+                <p><b>Host: </b> {{alert.host}}<br/>
+                   <b>Sensor: </b> {{alert.sensor}}<br/>
+                   <b>Dispositivo: </b> {{alert.dispositivo}}<br/>
+                   <b>Estatus:  </b>{{alert.estatus}}<br/>
+                   <b>Justificacion:  </b><br/>{{alert.justificacion}}</p>
+              </td>
+              <td>{{alert.vigenciaInicio}}</td>
               <td>{{alert.vigencia}}</td>
               <td>{{alert.empleado}}</td>
               <td>{{alert.area}}</td>
-              <td>{{alert.justificacion}}</td>
-              <td><app-switch-confirmation idAlert="{{alert.id}}" (alertActivation)="onAlertActivated(alert.id)"></app-switch-confirmation></td>
+              <td><app-switch-confirmation idAlert="{{alert.id}}" checked="{{alert.estatus===1?true:undefined}}" enabled="{{alert.estatus===1?true:undefined}}" (alertActivation)="onAlertActivated(alert.id)"></app-switch-confirmation></td>
             </tr>
           </tbody>
         </table>

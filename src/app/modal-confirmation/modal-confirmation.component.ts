@@ -5,6 +5,7 @@ import { Output, EventEmitter } from '@angular/core';
 import * as $ from 'jquery';
 import { catchError } from 'rxjs/operators';
 import { of, Observable, throwError } from 'rxjs';
+import { Alert } from '../model/alert';
 
 @Component({
   selector: 'app-modal-content',
@@ -50,12 +51,13 @@ export class ModalConfirmationComponent implements OnInit {
 	selector: 'app-switch-confirmation',
 	template: `
   <div class="form-check form-switch">
-    <input class="form-check-input" type="checkbox" role="switch" (click)="open($event)">
+    <input class="form-check-input" type="checkbox" [checked]="checked" [disabled]="!checked" role="switch" (click)="open($event)">
   </div>
 	`,
 })
 export class SwitchConfirmationComponent {
   @Input() idAlert:string;
+  @Input() checked:boolean;
   @Output() alertActivation = new EventEmitter<string>();
   private enabled = false;
 	constructor(private modalService: NgbModal) {}
